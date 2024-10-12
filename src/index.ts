@@ -70,3 +70,8 @@ export function validateJWT(secret: string, token: string): boolean {
         return false;
     }
 }
+
+export function refreshJWT(secret: string, token: string, ttl: number): string {
+    const { id, payload } = decodeJWT(secret, token);
+    return encodeJWT(secret, id, payload, ttl);
+}
